@@ -1,3 +1,4 @@
+from collections import Counter
 class Solution:
     def commonChars(self, words: List[str]) -> List[str]:
         res=[]
