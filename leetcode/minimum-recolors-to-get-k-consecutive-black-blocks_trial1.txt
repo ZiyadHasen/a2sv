@@ -1,0 +1,14 @@
+class Solution:
+    def minimumRecolors(self, blocks: str, k: int) -> int:
+        n = len(blocks)
+        pref = [0] * (n + 1)
+        
+        for i in range(n):
+            pref[i + 1] = pref[i] + (blocks[i] == 'W')
+        
+        ans = float('inf')
+        
+        for i in range(n - k + 1):
+            ans = min(ans, pref[i + k] - pref[i])
+        
+        return ans
