@@ -1,0 +1,14 @@
+from typing import List
+
+class Solution:
+    def numberOfSubarrays(self, nums: List[int], k: int) -> int:
+        count = {0: 1}
+        curr = 0
+        res = 0
+
+        for n in nums:
+            curr += n & 1
+            res += count.get(curr - k, 0)
+            count[curr] = count.get(curr, 0) + 1
+
+        return res
