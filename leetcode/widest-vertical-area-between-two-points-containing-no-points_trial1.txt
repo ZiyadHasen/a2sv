@@ -1,0 +1,11 @@
+from typing import List
+
+class Solution:
+    def maxWidthOfVerticalArea(self, points: List[List[int]]) -> int:
+        xs = sorted(p[0] for p in points)
+        res = 0
+
+        for i in range(1, len(xs)):
+            res = max(res, xs[i] - xs[i - 1])
+
+        return res
