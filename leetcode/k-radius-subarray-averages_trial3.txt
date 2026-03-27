@@ -1,0 +1,22 @@
+from typing import List
+
+class Solution:
+    def getAverages(self, nums: List[int], k: int) -> List[int]:
+        n = len(nums)
+        res = [-1] * n
+        
+        if k == 0:
+            return nums
+        
+        window = 2 * k + 1
+        if window > n:
+            return res
+        
+        s = sum(nums[:window])
+        
+        for i in range(k, n - k):
+            res[i] = s // window
+            if i + k + 1 < n:
+                s += nums[i + k + 1] - nums[i - k]
+        
+        return res
