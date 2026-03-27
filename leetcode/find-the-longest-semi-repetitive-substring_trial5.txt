@@ -1,0 +1,18 @@
+class Solution:
+    def longestSemiRepetitiveSubstring(self, s: str) -> int:
+        ans = 0
+        l = 0
+        pairs = 0
+
+        for r in range(len(s)):
+            if r > 0 and s[r] == s[r-1]:
+                pairs += 1
+
+            while pairs > 1:
+                if l + 1 <= r and s[l] == s[l+1]:
+                    pairs -= 1
+                l += 1
+
+            ans = max(ans, r - l + 1)
+
+        return ans
