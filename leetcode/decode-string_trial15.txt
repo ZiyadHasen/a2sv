@@ -1,0 +1,23 @@
+class Solution:
+    def decodeString(self, s: str) -> str:
+        num_stack = []
+        str_stack = []
+        num = 0
+        cur = ""
+        
+        for c in s:
+            if c.isdigit():
+                num = num * 10 + int(c)
+            elif c == "[":
+                num_stack.append(num)
+                str_stack.append(cur)
+                num = 0
+                cur = ""
+            elif c == "]":
+                prev = str_stack.pop()
+                k = num_stack.pop()
+                cur = prev + cur * k
+            else:
+                cur += c
+        
+        return cur
